@@ -177,8 +177,21 @@ function InteractiveShowcase() {
                     initial="animate"
                     animate="animate"
                     whileTap={{ cursor: "grabbing" }}
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={0.2}
+                    onDragEnd={(e, { offset, velocity }) => {
+                        const swipeThreshold = 50;
+                        if (offset.x > swipeThreshold) {
+                            // Swipe Right -> Previous (decrement index)
+                            setActiveIndex((prev) => Math.max(0, prev - 1));
+                        } else if (offset.x < -swipeThreshold) {
+                            // Swipe Left -> Next (increment index)
+                            setActiveIndex((prev) => Math.min(features.length - 1, prev + 1));
+                        }
+                    }}
                     transition={{ type: "spring", stiffness: 200, damping: 25 }}
-                    className="absolute w-[300px] h-[400px] bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-8 flex flex-col justify-between cursor-pointer origin-center"
+                    className="absolute w-[300px] h-[400px] bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-8 flex flex-col justify-between cursor-pointer origin-center touch-pan-y"
                     onClick={() => setActiveIndex(index)}
                 >
                     <div>

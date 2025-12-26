@@ -1,12 +1,38 @@
+"use client";
+
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { FeatureSection } from "@/components/FeatureSection";
-
 import { IdeaSubmission } from "@/components/IdeaSubmission";
 import { GlobalBackground } from "@/components/GlobalBackground";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+  const [isChecking, setIsChecking] = useState(true);
+
+  useEffect(() => {
+    // Target Date: January 1, 2026 00:00:00
+    const targetDate = new Date("2026-01-01T00:00:00");
+    const now = new Date();
+
+    if (now < targetDate) {
+      router.push("/timer");
+    } else {
+      setIsChecking(false);
+    }
+  }, [router]);
+
+  if (isChecking) {
+    return (
+      <div className="min-h-screen bg-theme-black flex items-center justify-center text-white">
+        Loading...
+      </div>
+    );
+  }
+
   return (
     <main className="min-h-screen bg-theme-black text-white selection:bg-theme-purple/30 relative">
       <GlobalBackground />

@@ -67,11 +67,11 @@ export const IdeaSubmission = () => {
     };
 
     return (
-        <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden py-24 px-4 bg-theme-black">
+        <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden py-24 px-4 ">
             {/* Background Gradient */}
             <div
                 className={cn(
-                    "absolute inset-0 transition-opacity duration-1000 bg-theme-black",
+                    "absolute inset-0 transition-opacity duration-1000 ",
                     isFocused ? "opacity-100" : "opacity-60"
                 )}
             >

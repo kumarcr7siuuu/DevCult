@@ -83,10 +83,6 @@ export default function Home() {
         </div>
 
         <IdeaSubmission />
-
-        <footer className="py-10 text-center text-white/30 text-sm">
-          <p>© 2026 Shopify Inc. Clone by Antigravity.</p>
-        </footer>
       </div>
     </main>
   );
